@@ -1,11 +1,10 @@
 import sys
-import random
 
 def main():
 
   # If incorrect number of arguments
   if len(sys.argv) != 2:
-    print "Usage: python randomize.py <file>"
+    print "Usage: python sort.py <file>"
     sys.exit(0)
 
   # Read arguments
@@ -20,7 +19,7 @@ def main():
     with open(filename, 'r') as f:
       for line in f:
         thelist.append(line)
-      random.shuffle(thelist)
+      thelist = sorted(thelist, key=str.lower)
 
   # If file is not valid
   except IOError:
@@ -28,7 +27,7 @@ def main():
     sys.exit(0)
 
   # Create new file to store edited list
-  newfilename = "random_" + filename
+  newfilename = "sorted_" + filename
   with open(newfilename, 'w') as f:
     for name in thelist:
       f.write(name)
